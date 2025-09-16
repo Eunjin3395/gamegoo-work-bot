@@ -30,14 +30,12 @@ jobs:
           script: |
             cd /home/ubuntu/gamegoo-work-bot
 
-            # .env 파일 생성
-            cat > .env << EOF
-DISCORD_TOKEN=${{ secrets.DISCORD_TOKEN }}
-AWS_REGION=${{ secrets.AWS_REGION }}
-AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }}
-AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}
-WORK_CHANNEL_ID=${{ secrets.WORK_CHANNEL_ID }}
-EOF
+            # .env 파일 생성 (echo 방식)
+            echo "DISCORD_TOKEN=${{ secrets.DISCORD_TOKEN }}" > .env
+            echo "AWS_REGION=${{ secrets.AWS_REGION }}" >> .env
+            echo "AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }}" >> .env
+            echo "AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}" >> .env
+            echo "WORK_CHANNEL_ID=${{ secrets.WORK_CHANNEL_ID }}" >> .env
 
             # 의존성 설치 및 PM2 재시작
             npm install
